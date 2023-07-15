@@ -1,0 +1,55 @@
+load("@aspect_rules_js//js:defs.bzl", "js_run_binary")
+load("@aspect_bazel_lib//lib:copy_file.bzl", "copy_file")
+
+copy_file(
+    name = "query_engine",
+    src = select({
+        "@platforms//os:osx": "@prisma_query_engine_darwin//file",
+        "@platforms//os:linux": "@prisma_query_engine_darwin//file",
+        "//conditions:default": "@prisma_query_engine_darwin//file",
+    }),
+    out = "libquery_engine-darwin-arm64.dylib.node",
+)
+copy_file(
+    name = "migration_engine",
+    src = select({
+        "@platforms//os:osx": "@prisma_migration_engine_darwin//file",
+        "@platforms//os:linux": "@prisma_query_engine_darwin//file",
+        "//conditions:default": "@prisma_query_engine_darwin//file",
+    }),
+    out = "prisma_migration_engine_darwin",
+)
+
+js_run_binary(
+    name = "js_generator",
+    tool = "//prisma",
+    srcs = [
+        "schema.prisma",
+        ":query_engine",
+        ":migration_engine",
+        "//:node_modules/@prisma/client",
+    ],
+    env = {
+        # $PWD is 3 levels deep because we're running an npm binary
+        "PRISMA_MIGRATION_ENGINE_BINARY": "../../../$(location :migration_engine)",
+        "PRISMA_QUERY_ENGINE_LIBRARY": "../../../$(location :query_engine)",
+    },
+    args = [
+        "generate",
+        "--generator",
+        "client",
+        "--schema",
+        package_name()+"/schema.prisma",
+    ],
+    outs = [
+        "gen/client/schema.prisma",
+        "gen/client/runtime/library.js",
+        "gen/client/runtime/index-browser.js",
+        "gen/client/runtime/library.d.ts",
+        "gen/client/runtime/index-browser.d.ts",
+        "gen/client/index.js",
+        "gen/client/index-browser.js",
+        "gen/client/package.json",
+        "gen/client/index.d.ts",
+    ],
+)

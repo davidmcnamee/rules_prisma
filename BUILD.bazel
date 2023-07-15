@@ -1,0 +1,4 @@
+load("@npm//:defs.bzl", "npm_link_all_packages")
+# load("@@aspect_rules_js~1.30.0~npm~npm//:defs.bzl", "npm_link_all_packages")
+
+npm_link_all_packages(name = "node_modules")

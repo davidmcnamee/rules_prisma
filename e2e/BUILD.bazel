@@ -1,0 +1,9 @@
+
+genrule(
+    name = "gen",
+    srcs = [
+        "@rules_prisma//test:js_generator",
+    ],
+    outs = ["gen.out"],
+    cmd = "echo hello > $@",
+)

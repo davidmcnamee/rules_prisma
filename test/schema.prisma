@@ -1,0 +1,32 @@
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "gen/client"
+}
+
+generator client_go {
+  provider = "go run github.com/steebchen/prisma-client-go"
+  output = "gen/client_go"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  email       String  @unique
+  name        String?
+  posts        Post[]
+}
+
+model Post {
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+  title     String
+  content   String?
+  published Boolean @default(false)
+  author    User    @relation(fields: [authorId], references: [id])
+  authorId  String  @db.ObjectId
+}
+

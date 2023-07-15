@@ -1,0 +1,7 @@
+"""dependencies"""
+
+module(name = "e2e_test")
+
+# === rules_prisma ===
+bazel_dep(name = "rules_prisma", version = "1.0")
+local_path_override(module_name = "rules_prisma", path = "..")

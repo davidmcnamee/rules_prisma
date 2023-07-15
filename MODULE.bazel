@@ -1,0 +1,40 @@
+"""dependencies"""
+
+module(name = "rules_prisma", version = "1.0")
+
+download_prisma_engines = use_extension(
+    "@rules_prisma//prisma:engines.bzl",
+    "download_prisma_engines",
+    dev_dependency = False
+)
+use_repo(
+    download_prisma_engines,
+    "prisma_query_engine_darwin",
+    "prisma_migration_engine_darwin",
+)
+
+# === rules_js ===
+bazel_dep(name = "aspect_rules_js", version = "1.30.0")
+npm = use_extension("@aspect_rules_js//npm:extensions.bzl", "npm", dev_dependency = False)
+npm.npm_translate_lock(
+    name = "npm",
+    pnpm_lock = "//:pnpm-lock.yaml",
+    verify_node_modules_ignored = "//:.bazelignore",
+)
+use_repo(npm, "npm")
+
+# === rules_ts ===
+# bazel_dep(name = "aspect_rules_ts", version = "1.4.5")
+# rules_ts_ext = use_extension(
+#     "@aspect_rules_ts//ts:extensions.bzl",
+#     "ext",
+#     dev_dependency = True,
+# )
+# rules_ts_ext.deps()
+# use_repo(rules_ts_ext, "npm_typescript")
+
+# === aspect_bazel_lib ===
+bazel_dep(name = "aspect_bazel_lib", version = "1.32.1")
+
+# === platforms ===
+bazel_dep(name = "platforms", version = "0.0.5")
