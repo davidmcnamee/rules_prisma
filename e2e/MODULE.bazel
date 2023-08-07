@@ -5,3 +5,13 @@ module(name = "e2e_test")
 # === rules_prisma ===
 bazel_dep(name = "rules_prisma", version = "1.0")
 local_path_override(module_name = "rules_prisma", path = "..")
+
+# === rules_js ===
+# bazel_dep(name = "aspect_rules_js", version = "1.30.0")
+# npm = use_extension("@aspect_rules_js//npm:extensions.bzl", "npm", dev_dependency = True)
+# npm.npm_translate_lock(
+#     name = "npm",
+#     pnpm_lock = "//:pnpm-lock.yaml",
+#     verify_node_modules_ignored = "//:.bazelignore",
+# )
+# use_repo(npm, "npm")

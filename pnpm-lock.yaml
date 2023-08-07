@@ -2,10 +2,12 @@ lockfileVersion: 5.4
 
 specifiers:
   '@prisma/client': ^5.0.0
+  '@prisma/engines': ^5.0.0
   prisma: ^5.0.0
 
 dependencies:
   '@prisma/client': 5.0.0_prisma@5.0.0
+  '@prisma/engines': 5.0.0
 
 devDependencies:
   prisma: 5.0.0

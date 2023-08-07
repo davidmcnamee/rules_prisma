@@ -1,4 +1,17 @@
 load("@npm//:defs.bzl", "npm_link_all_packages")
-# load("@@aspect_rules_js~1.30.0~npm~npm//:defs.bzl", "npm_link_all_packages")
+load("@gazelle//:def.bzl", "gazelle")
+
+# gazelle:prefix github.com/davidmcnamee/rules_prisma
+gazelle(name = "gazelle")
+
+gazelle(
+    name = "gazelle-update-repos",
+    args = [
+        "-from_file=go.mod",
+        "-to_macro=prisma/deps.bzl%go_dependencies",
+        "-prune",
+    ],
+    command = "update-repos",
+)
 
 npm_link_all_packages(name = "node_modules")

@@ -1,6 +1,26 @@
+load("@aspect_rules_js//js:defs.bzl", "js_binary", "js_library")
 load("@npm//:prisma/package_json.bzl", prisma_bin = "bin")
 
 prisma_bin.prisma_binary(
-    name = "prisma",
+    name = "prisma_binary",
+    visibility = ["//visibility:public"],
+    data = [
+        "//:node_modules/@prisma/client",
+    ],
+)
+
+js_library(
+    name = "wrapper_lib",
+    srcs = ["wrapper.js"],
+    deps = [
+        "//:node_modules/prisma",
+        "//:node_modules/@prisma/engines",
+        "//:node_modules/@prisma/client", # keep
+    ]
+)
+js_binary(
+    name = "wrapper",
+    entry_point = "wrapper.js",
+    data = [":wrapper_lib"],
     visibility = ["//visibility:public"],
 )

@@ -1,6 +1,6 @@
 """dependencies"""
 
-module(name = "rules_prisma", version = "1.0")
+module(name = "rules_prisma", version = "0.0.1")
 
 download_prisma_engines = use_extension(
     "@rules_prisma//prisma:engines.bzl",
@@ -20,6 +20,7 @@ npm.npm_translate_lock(
     name = "npm",
     pnpm_lock = "//:pnpm-lock.yaml",
     verify_node_modules_ignored = "//:.bazelignore",
+    link_workspace = "rules_prisma",
 )
 use_repo(npm, "npm")
 
@@ -33,8 +34,28 @@ use_repo(npm, "npm")
 # rules_ts_ext.deps()
 # use_repo(rules_ts_ext, "npm_typescript")
 
-# === aspect_bazel_lib ===
+# === simple deps ===
 bazel_dep(name = "aspect_bazel_lib", version = "1.32.1")
-
-# === platforms ===
 bazel_dep(name = "platforms", version = "0.0.5")
+bazel_dep(name = "bazel_skylib", version = "1.4.2")
+bazel_dep(name = "rules_go", version = "0.41.0", repo_name = "io_bazel_rules_go")
+bazel_dep(name = "gazelle", version = "0.32.0")
+
+# === go dependencies ===
+deps = use_extension(
+    "@rules_prisma//prisma:deps.bzl",
+    "deps",
+    dev_dependency = False
+)
+use_repo(
+    deps,
+    "com_github_iancoleman_strcase",
+    "com_github_joho_godotenv",
+    "com_github_shopspring_decimal",
+    "com_github_steebchen_prisma_client_go",
+    "com_github_takuoki_gocase",
+    "org_golang_x_mod",
+    "org_golang_x_sys",
+    "org_golang_x_text",
+    "org_golang_x_tools",
+)
