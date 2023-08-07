@@ -27,7 +27,7 @@ By default, these two tools are *very much incompatible* (mainly because of sand
 ### Prerequisites
 * Follow [this tutorial](https://www.prisma.io/docs/getting-started/setup-prisma/start-from-scratch/relational-databases-typescript-postgresql) to set up a regular Prisma project
 * Install [bazelisk](https://github.com/bazelbuild/bazelisk)
-* Add `--enable_bzlmod` to a `.bazelrc` file in your root directory
+* Add `common --enable_bzlmod` to a `.bazelrc` file in your root directory
 * Install the appropriate bazel module for your language: [rules_ts](https://github.com/aspect-build/rules_ts) (typescript), [rules_js](https://github.com/aspect-build/rules_js) (javascript)
 
 ### Installation
