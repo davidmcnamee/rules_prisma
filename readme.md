@@ -32,6 +32,8 @@ By default, these two tools are *very much incompatible* (mainly because of sand
 
 ### Installation
 
+Add this to the `MODULE.bazel` file in the root of your project:
+
 ```py
 bazel_dep(name = "rules_prisma", version = "0.1.0")
 ```
