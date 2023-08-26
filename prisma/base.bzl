@@ -1,5 +1,6 @@
 load("@aspect_rules_js//js:defs.bzl", "js_run_binary")
 load("@aspect_bazel_lib//lib:copy_file.bzl", "copy_file")
+load("//prisma:engines.bzl", "select_query_engine")
 
 def prisma_generate_base(
     name,
@@ -19,7 +20,7 @@ def prisma_generate_base(
     # env["DEBUG"] = "*"
     copy_file(
         name = query_engine,
-        src = "@prisma_query_engine_darwin//file",
+        src = select_query_engine,
         out = "%s_bin" % query_engine,
     )
 

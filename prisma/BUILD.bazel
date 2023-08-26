@@ -1,5 +1,8 @@
 load("@aspect_rules_js//js:defs.bzl", "js_binary", "js_library")
 load("@npm//:prisma/package_json.bzl", prisma_bin = "bin")
+load("//prisma:engines.bzl", "create_config_chains")
+
+create_config_chains()
 
 prisma_bin.prisma_binary(
     name = "prisma_binary",

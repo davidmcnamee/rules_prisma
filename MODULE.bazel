@@ -10,6 +10,10 @@ download_prisma_engines = use_extension(
 use_repo(
     download_prisma_engines,
     "prisma_query_engine_darwin",
+    "prisma_query_engine_darwin-arm64",
+    "prisma_query_engine_windows",
+    "prisma_query_engine_debian-openssl-3_0_x",
+    "prisma_query_engine_linux-arm64-openssl-3_0_x",
     "prisma_migration_engine_darwin",
 )
 

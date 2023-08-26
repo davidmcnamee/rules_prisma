@@ -13,8 +13,6 @@ def prisma_generate_go(
 ):
     env = {k: v for k, v in env.items()}
     env["PRISMA_CLIENT_GO"] = "../../../$(location @com_github_steebchen_prisma_client_go//:prisma-client-go)"
-    if "HOME" not in env:
-        env["HOME"] = "dummyhomedir"
     
     prisma_generate_base(
         name = name,
