@@ -17,9 +17,9 @@ By default, these two tools are *very much incompatible* (mainly because of sand
 
 * The project currently supports Javascript and Typescript
 * [x] Go will very soon be supported (Sep 2023)
-* Python and Rust are on the roadmap (Nov/Dec 2023)
-* I currently model each "rule" as a bazel macro, but I believe this would be an appropriate time to start writing a proper bazel rule implementation (which *may* cut down on build time and overhead)
-* I only support Bzlmod right now, not sure if I'll ever support `WORKSPACE` files (because they're "legacy")
+* [ ] Python and Rust are on the roadmap (Nov/Dec 2023)
+* [ ] I currently model each "rule" as a bazel macro, but I believe this would be an appropriate time to start writing a proper bazel rule implementation (which *may* cut down on build time and overhead)
+* [ ] I only support Bzlmod right now, not sure if I'll ever support `WORKSPACE` files (because they're "legacy")
 * This is still in pre-release, things will probably break
 
 ## Setup
