@@ -12,8 +12,8 @@ use_repo(
     "prisma_query_engine_darwin",
     "prisma_query_engine_darwin-arm64",
     "prisma_query_engine_windows",
-    "prisma_query_engine_debian-openssl-3_0_x",
-    "prisma_query_engine_linux-arm64-openssl-3_0_x",
+    "prisma_query_engine_debian-openssl-3.0.x",
+    "prisma_query_engine_linux-arm64-openssl-3.0.x",
     "prisma_migration_engine_darwin",
 )
 

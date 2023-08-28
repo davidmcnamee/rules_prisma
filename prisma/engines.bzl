@@ -37,11 +37,11 @@ def _download_prisma_engines(ctx):
         url = "https://binaries.prisma.sh/all_commits/d9a4c5988f480fa576d43970d5a23641aa77bc9c/windows/query-engine.gz"
     )
     http_file(
-        name = "prisma_query_engine_debian-openssl-3_0_x",
+        name = "prisma_query_engine_debian-openssl-3.0.x",
         url = "https://binaries.prisma.sh/all_commits/d9a4c5988f480fa576d43970d5a23641aa77bc9c/debian-openssl-3.0.x/query-engine.gz"
     )
     http_file(
-        name = "prisma_query_engine_linux-arm64-openssl-3_0_x",
+        name = "prisma_query_engine_linux-arm64-openssl-3.0.x",
         url = "https://binaries.prisma.sh/all_commits/d9a4c5988f480fa576d43970d5a23641aa77bc9c/linux-arm64-openssl-3.0.x/query-engine.gz"
     )
     # migration engine

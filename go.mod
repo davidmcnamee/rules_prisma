@@ -11,4 +11,4 @@ require (
 	golang.org/x/text v0.10.0
 )
 
-replace github.com/steebchen/prisma-client-go v0.20.0 => github.com/davidmcnamee/prisma-client-go v0.20.5
+replace github.com/steebchen/prisma-client-go v0.20.0 => github.com/davidmcnamee/prisma-client-go v0.20.6

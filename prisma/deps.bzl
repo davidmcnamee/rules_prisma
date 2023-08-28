@@ -25,8 +25,8 @@ def go_dependencies():
         name = "com_github_steebchen_prisma_client_go",
         importpath = "github.com/steebchen/prisma-client-go",
         replace = "github.com/davidmcnamee/prisma-client-go",
-        sum = "h1:snCNqKVKeCYEqg4RTRzGWqxBhFaylkdIkSFINP6gOAA=",
-        version = "v0.20.5",
+        sum = "h1:wwssWDtu4UyPdyhpmtF1hh31RmgAOYQ+fEEG0cikk58=",
+        version = "v0.20.6",
     )
 
     go_repository(

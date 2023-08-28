@@ -1,8 +1,26 @@
 load("@aspect_rules_js//js:defs.bzl", "js_binary", "js_library")
 load("@npm//:prisma/package_json.bzl", prisma_bin = "bin")
 load("//prisma:engines.bzl", "create_config_chains")
+load("@aspect_bazel_lib//lib:transitions.bzl", "platform_transition_binary")
+load("@aspect_bazel_lib//lib:output_files.bzl", "output_files")
 
 create_config_chains()
+
+platform_transition_binary(
+    name = "prisma_client_go_platform_transition",
+    binary = "@com_github_steebchen_prisma_client_go//:prisma-client-go",
+    target_platform="@local_config_platform//:host",
+    visibility = ["//visibility:public"],
+)
+output_files(
+    name = "prisma_client_go",
+    paths = [
+        "prisma/prisma_client_go_platform_transition/prisma-client-go",
+    ],
+    target=":prisma_client_go_platform_transition",
+    visibility = ["//visibility:public"],
+)
+
 
 prisma_bin.prisma_binary(
     name = "prisma_binary",

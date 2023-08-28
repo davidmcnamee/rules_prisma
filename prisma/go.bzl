@@ -12,17 +12,17 @@ def prisma_generate_go(
     visibility = None,
 ):
     env = {k: v for k, v in env.items()}
-    env["PRISMA_CLIENT_GO"] = "../../../$(location @com_github_steebchen_prisma_client_go//:prisma-client-go)"
-    
+    env["PRISMA_CLIENT_GO"] = "../../../$(location @rules_prisma//prisma:prisma_client_go)"
+    env["PRISMA_CLIENT_GO_CONSISTENT_FILENAMES"] = "true"
+
     prisma_generate_base(
         name = name,
         schema = schema,
         generator_name = generator_name,
-        generator_srcs = ["@com_github_steebchen_prisma_client_go//:prisma-client-go"],
+        generator_srcs = ["@rules_prisma//prisma:prisma_client_go"],
         outs = [
-            paths.join(generator_output, "query-engine-darwin-arm64_gen.go"),
+            paths.join(generator_output, "query-engine_gen.go"),
             paths.join(generator_output, "db_gen.go"),
-            # paths.join(generator_output, "query-engine-linux_gen.go"),
         ],
         env = env,
         visibility = visibility,
@@ -30,9 +30,8 @@ def prisma_generate_go(
     go_library(
         name = name,
         srcs = [
-            paths.join(generator_output, "query-engine-darwin-arm64_gen.go"),
+            paths.join(generator_output, "query-engine_gen.go"),
             paths.join(generator_output, "db_gen.go"),
-            # paths.join(generator_output, "query-engine-linux_gen.go"),
         ],
         importpath = importpath,
         deps = [
